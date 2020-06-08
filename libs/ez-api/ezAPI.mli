@@ -292,3 +292,5 @@ module Legacy : sig
     ('b, 'c, 'input, 'output) service
 
 end
+
+val get_service_path : _ service -> string

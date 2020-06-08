@@ -905,7 +905,6 @@ let paths_of_sections ?(docs=[]) sections =
   let definitions = definitions @ [ "securitySchemes", `O security_schemes ] in
   paths, definitions
 
-
 module Legacy = struct
 
   type nonrec ('params, 'params2, 'input, 'output) service =
@@ -928,3 +927,5 @@ module Legacy = struct
     service ?section ?name ?descr ?meth ~output ?params arg
 
 end
+
+let get_service_path s = get_path s.doc
