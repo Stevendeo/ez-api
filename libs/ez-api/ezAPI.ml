@@ -928,4 +928,25 @@ module Legacy = struct
 
 end
 
-let get_service_path s = get_path s.doc
+let get_service_path s args =
+  let rec buf_path args b p =
+    match p with
+    | ROOT -> ()
+    | CONCAT (p, s) ->
+       buf_path args b p;
+       Buffer.add_char b '/';
+       Buffer.add_string b s
+    | ENDARG (p, arg) ->
+       let hd, tl =
+         match args with
+         | [] -> None, []
+         | hd :: tl -> Some hd, tl in
+       buf_path tl b p;
+       Buffer.add_char b '/';
+       match hd with
+       | None ->    Printf.bprintf b "{%s}" arg.Resto.Arg.name
+       | Some hd -> Printf.bprintf b "{%s}" hd
+  in
+  let b = Buffer.create 100 in
+  buf_path args b s.doc.doc_path;
+  Buffer.contents b

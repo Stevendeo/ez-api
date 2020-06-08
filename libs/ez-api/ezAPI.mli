@@ -254,7 +254,6 @@ val paths_of_sections : ?docs:((string * string * string) list) ->
   section list ->
   (string * Ezjsonm.value) list * (string * Ezjsonm.value) list
 
-
 module Legacy : sig
 
   type nonrec ('params, 'params2, 'input, 'output) service =
@@ -293,4 +292,4 @@ module Legacy : sig
 
 end
 
-val get_service_path : _ service -> string
+val get_service_path : _ service -> string list -> string
