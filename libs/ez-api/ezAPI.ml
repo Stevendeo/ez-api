@@ -945,7 +945,7 @@ let get_service_path s args =
        Buffer.add_char b '/';
        match hd with
        | None ->    Printf.bprintf b "{%s}" arg.Resto.Arg.name
-       | Some hd -> Printf.bprintf b "{%s}" hd
+       | Some hd -> Printf.bprintf b "%s" hd
   in
   let b = Buffer.create 100 in
   buf_path args b s.doc.doc_path;
